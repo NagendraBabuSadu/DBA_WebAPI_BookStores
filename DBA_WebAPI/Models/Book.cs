@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace DBA_WebAPI.Models;
+
+public partial class Book
+{
+    public int BookId { get; set; }
+
+    public string Title { get; set; } = null!;
+
+    public string Type { get; set; } = null!;
+
+    public int PubId { get; set; }
+
+    public decimal? Price { get; set; }
+
+    public decimal? Advance { get; set; }
+
+    public int? Royalty { get; set; }
+
+    public int? YtdSales { get; set; }
+
+    public string? Notes { get; set; }
+
+    public DateTime PublishedDate { get; set; }
+}
