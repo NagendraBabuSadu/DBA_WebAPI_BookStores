@@ -9,7 +9,7 @@ public partial class User
 
     public string Password { get; set; } = null!;
 
-    public string Source { get; set; } = null!;
+    public string Source { get; set; } 
 
     public string? FirstName { get; set; }
 
@@ -24,5 +24,5 @@ public partial class User
     public DateTime? HireDate { get; set; }
 
     public virtual Publisher Publisher { get; set; }
-    public virtual Role Role{ get; set; }
+    public virtual Role Role { get; set; } 
 }
