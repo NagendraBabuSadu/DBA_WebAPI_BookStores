@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using DBA_WebAPI.Models;
+﻿using DBA_WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DBA_WebAPI.Data;
@@ -85,11 +83,20 @@ public partial class BookStoresDbContext : DbContext
                 .HasColumnName("zip");
         });
 
+
+    // An unhandled exception occurred while processing the request.
+    // SqlException: Cannot insert the value NULL into column 'type', table 'BookStoresDB.dbo.Book'; column does not allow nulls.UPDATE fails.
+    //Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, bool breakConnection, Action < Action > wrapCloseInAction)
         modelBuilder.Entity<Book>(entity =>
         {
             entity.HasKey(e => e.BookId).HasName("PK__Book__490D1AE1B4346AA0");
 
             entity.ToTable("Book");
+
+            entity.HasOne(b => b.Publisher)
+                .WithMany(p => p.Books)
+                .HasForeignKey(b => b.PubId)
+                .HasPrincipalKey(p => p.PubId);
 
             entity.Property(e => e.BookId).HasColumnName("book_id");
             entity.Property(e => e.Advance)
@@ -119,6 +126,8 @@ public partial class BookStoresDbContext : DbContext
             entity.Property(e => e.YtdSales).HasColumnName("ytd_sales");
         });
 
+
+
         modelBuilder.Entity<BookAuthor>(entity =>
         {
             entity.HasKey(e => new { e.AuthorId, e.BookId });
@@ -144,11 +153,21 @@ public partial class BookStoresDbContext : DbContext
                 .HasColumnName("job_desc");
         });
 
+     
+
         modelBuilder.Entity<Publisher>(entity =>
         {
             entity.HasKey(e => e.PubId).HasName("PK__Publishe__2515F22293A5E5A6");
 
             entity.ToTable("Publisher");
+
+            //modelBuilder.Entity<User>()
+            //    .HasOne(u => u.Pub)
+            //    .WithMany(p => p.Users)
+            //    .HasForeignKey(u => u.PubId)
+            //    .HasPrincipalKey(p => p.PubId);
+
+
 
             entity.Property(e => e.PubId).HasColumnName("pub_id");
             entity.Property(e => e.City)
@@ -264,9 +283,19 @@ public partial class BookStoresDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("User");
+            entity.ToTable("User");
+
+            entity.HasKey(e => e.UserId);  // ✅ Declare primary key
+
+            entity.Property(e => e.UserId)
+                .ValueGeneratedOnAdd()
+                .HasColumnName("user_id");
+
+
+            entity.HasOne(u => u.Publisher)
+                .WithMany(p => p.Users)
+                .HasForeignKey(b => b.PubId)
+                .HasPrincipalKey(p => p.PubId);
 
             entity.Property(e => e.EmailAddress)
                 .HasMaxLength(100)
@@ -298,9 +327,7 @@ public partial class BookStoresDbContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("source");
-            entity.Property(e => e.UserId)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("user_id");
+      
         });
 
         OnModelCreatingPartial(modelBuilder);

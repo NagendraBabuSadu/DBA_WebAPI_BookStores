@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DBA_WebAPI.Models;
+﻿namespace DBA_WebAPI.Models;
 
 public partial class Sale
 {
@@ -18,4 +15,6 @@ public partial class Sale
     public string PayTerms { get; set; } = null!;
 
     public int BookId { get; set; }
+
+    public virtual Book Book { get; set; }
 }

@@ -5,6 +5,10 @@ namespace DBA_WebAPI.Models;
 
 public partial class Book
 {
+    public Book()
+    {
+        Sales = new HashSet<Sale>();
+    }
     public int BookId { get; set; }
 
     public string Title { get; set; } = null!;
@@ -24,4 +28,7 @@ public partial class Book
     public string? Notes { get; set; }
 
     public DateTime PublishedDate { get; set; }
+
+    public virtual Publisher Publisher { get; set; }
+    public virtual ICollection<Sale> Sales{ get; set; }
 }

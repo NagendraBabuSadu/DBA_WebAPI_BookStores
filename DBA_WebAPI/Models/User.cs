@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DBA_WebAPI.Models;
+﻿namespace DBA_WebAPI.Models;
 
 public partial class User
 {
@@ -24,4 +21,7 @@ public partial class User
     public int PubId { get; set; }
 
     public DateTime? HireDate { get; set; }
+
+    public virtual Publisher Publisher { get; set; }
+    public virtual Role Role{ get; set; }
 }

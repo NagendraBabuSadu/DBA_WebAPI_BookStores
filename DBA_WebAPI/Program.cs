@@ -1,12 +1,19 @@
 
 using DBA_WebAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+// JSON Serialization
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 
 // Register DbContext with connection string from appsettings.json
 builder.Services.AddDbContext<BookStoresDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BookStoresDB")));

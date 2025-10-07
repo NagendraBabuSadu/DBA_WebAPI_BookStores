@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DBA_WebAPI.Models;
+﻿namespace DBA_WebAPI.Models;
 
 public partial class Author
 {
