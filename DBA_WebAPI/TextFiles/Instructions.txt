@@ -1,0 +1,10 @@
+﻿Steps to Follow for Basic Authentication:
+	1. app.UseAuthentication()
+	2. AuthenticationHandler
+	3. AuthenticationSchemeOptions
+	4. [Authorize]
+	5. services.AddAuthentication
+	6. AuthenticateResult.Fail & Success
+	7. AuthenticationHeaderValue
+
+	www.base64encode.org => to encode email and Password

@@ -1,5 +1,7 @@
 
 using DBA_WebAPI.Data;
+using DBA_WebAPI.Handlers;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -18,6 +20,11 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 // Register DbContext with connection string from appsettings.json
 builder.Services.AddDbContext<BookStoresDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("BookStoresDB")));
 
+// Step 5. Authentication Servive
+builder.Services.AddAuthentication("BasicAuthentication")
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -32,6 +39,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+// Step 1. Authentication
+app.UseAuthentication();
+
 
 app.UseAuthorization();
 
