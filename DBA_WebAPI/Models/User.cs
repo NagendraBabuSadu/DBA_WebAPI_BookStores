@@ -3,6 +3,7 @@
 public partial class User
 {
     public int UserId { get; set; }
+    // Just eding 
 
     public string EmailAddress { get; set; } = null!;
 
