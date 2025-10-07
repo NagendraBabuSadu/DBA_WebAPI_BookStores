@@ -1,0 +1,15 @@
+* [33mc4303e8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mBranch1[m[33m, [m[1;31morigin/Branch1[m[33m)[m Chores: Updated with UsersController
+* [33m07544bd[m Testing
+[31m|[m *   [33m984e756[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #1 from NagendraBabuSadu/Branch1
+[31m|[m [32m|[m[31m\[m  
+[31m|[m [32m|[m[31m/[m  
+[31m|[m[31m/[m[32m|[m   
+* [32m|[m [33m982995a[m Branch 1 Commit
+[32m|[m[32m/[m  
+* [33m204ff5e[m[33m ([m[1;32mmaster[m[33m)[m Chore: Changes done in Publisher Controller
+* [33m3c3ae76[m Removed appSettings.Development.json from Git Tracking
+* [33m139f0fb[m Commit
+* [33m95fcbbf[m Commit
+* [33m49c9506[m Add the changes
+* [33mbe87879[m Add project files.
+* [33m4b2699c[m Add .gitattributes and .gitignore.

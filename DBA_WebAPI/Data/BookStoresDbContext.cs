@@ -323,11 +323,24 @@ public partial class BookStoresDbContext : DbContext
                 .HasColumnName("password");
             entity.Property(e => e.PubId).HasColumnName("pub_id");
             entity.Property(e => e.RoleId).HasColumnName("role_id");
+            //entity.Property(e => e.Source)
+            //    .HasMaxLength(100)
+            //    .IsUnicode(false)
+            //    .HasColumnName("source");
+
             entity.Property(e => e.Source)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("source");
-      
+              .IsRequired()
+              .HasColumnName("source")
+              .HasMaxLength(100)
+              .IsUnicode(false);
+
+            entity.HasOne(d => d.Publisher)
+                .WithMany(p => p.Users)
+                .HasForeignKey(d => d.PubId)
+                .HasConstraintName("FK__User2__pub_id__60083D91");
+
+          
+
         });
 
         OnModelCreatingPartial(modelBuilder);
