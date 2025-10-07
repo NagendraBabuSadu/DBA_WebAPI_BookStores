@@ -32,7 +32,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/Publishers/GetPublisherDetails/1",
+      "launchUrl": "api/Users/GetUser",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
